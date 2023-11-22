@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy3yj28aafqjv"]
+
+[ext_resource type="Texture2D" uid="uid://bpwpe6qbvap82" path="res://assets/enemies/Slime/Slime_Spiked_Idle.png" id="1_fho0q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dg43r"]
+size = Vector2(20, 17)
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fho0q")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 7.5)
+shape = SubResource("RectangleShape2D_dg43r")
