@@ -2,19 +2,31 @@ extends CharacterBody2D
 
 
 @export var speed = 200
+@export var attack_cooldown = 2
+@export var attack_animation = 0.5		# could be change later when animation is added
+
+var can_attack = true
+
+
+func _ready():
+	start()
+
+
+func start():
+	$AttackTimer.wait_time = attack_cooldown
+	$AttackHitbox.hide()
 
 
 func _physics_process(delta):
 	var input = Input.get_vector("left", "right", "top", "down")
 	handle_movement(input)
 	handle_facing(input)
-	pass
+	handle_attack()
 
 
 func handle_movement(input):
 	velocity = speed * input
 	move_and_slide()
-	pass
 
 
 func handle_facing(input):
@@ -34,5 +46,25 @@ func handle_facing(input):
 		$Sprite2D.frame = 2
 		get_node("Sprite2D").set_flip_h(false)
 		$AttackHitbox.scale = Vector2(1, 1)
+
+
+func handle_attack():
+	# check if possible to attack
+	if not can_attack:
+		return
+	can_attack = false
+	$AttackTimer.start()
 	
-	pass
+	# handle show and hide attack hitbox
+	$AttackHitbox.show()
+	await get_tree().create_timer(0.5).timeout
+	$AttackHitbox.hide()
+
+
+func _on_attack_timer_timeout():
+	can_attack = true
+
+
+func _on_attack_hitbox_area_entered(area):
+	if area.is_in_group("enemies"):
+		print(area)		# need to adjust later
