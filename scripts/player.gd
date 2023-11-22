@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
+@export var entity: Resource_Entity
+@export var speed: int = 200
+@export var attack_cooldown: int = 2
+@export var attack_animation: float = 0.5		# could be change later when animation is added
 
-@export var speed = 200
-@export var attack_cooldown = 2
-@export var attack_animation = 0.5		# could be change later when animation is added
-
-var can_attack = true
+var can_attack: bool = true
 
 
 func _ready():
@@ -67,4 +67,4 @@ func _on_attack_timer_timeout():
 
 func _on_attack_hitbox_area_entered(area):
 	if area.is_in_group("enemies"):
-		print(area)		# need to adjust later
+		print(area.entity.health)		# need to adjust later
