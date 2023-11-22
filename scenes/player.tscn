@@ -10,7 +10,7 @@ size = Vector2(21.25, 16.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7102"]
 size = Vector2(24, 44.875)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_l1yk1")
 entity = ExtResource("2_qj0p0")
