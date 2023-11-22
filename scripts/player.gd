@@ -28,8 +28,11 @@ func handle_facing(input):
 	if input.x > 0:
 		$Sprite2D.frame = 2
 		get_node("Sprite2D").set_flip_h(true)
+		$AttackHitbox.scale = Vector2(-1, 1)
+		
 	elif input.x < 0:
 		$Sprite2D.frame = 2
 		get_node("Sprite2D").set_flip_h(false)
+		$AttackHitbox.scale = Vector2(1, 1)
 	
 	pass
