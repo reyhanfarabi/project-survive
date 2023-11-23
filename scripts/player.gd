@@ -1,35 +1,35 @@
 extends CharacterBody2D
 
-@export var entity: Resource_Entity
-@export var speed: int = 200
-@export var attack_cooldown: int = 2
-@export var attack_animation: float = 0.5		# could be change later when animation is added
+@export var _entity: Resource_Entity
+@export var _speed: int = 200
+@export var _attack_cooldown: int = 2
+@export var _attack_animation: float = 0.5		# could be change later when animation is added
 
-var can_attack: bool = true
+var _can_attack: bool = true
 
 
 func _ready():
-	start()
+	_start()
 
 
-func start():
-	$AttackTimer.wait_time = attack_cooldown
+func _start():
+	$AttackTimer.wait_time = _attack_cooldown
 	$AttackHitbox.hide()
 
 
 func _physics_process(delta):
 	var input = Input.get_vector("left", "right", "top", "down")
-	handle_movement(input)
-	handle_facing(input)
-	handle_attack()
+	_handle_movement(input)
+	_handle_facing(input)
+	_handle_attack()
 
 
-func handle_movement(input):
-	velocity = speed * input
+func _handle_movement(input):
+	velocity = _speed * input
 	move_and_slide()
 
 
-func handle_facing(input):
+func _handle_facing(input):
 	# handle vertical facing
 	if input.y > 0:
 		$Sprite2D.frame = 0
@@ -48,11 +48,11 @@ func handle_facing(input):
 		$AttackHitbox.scale = Vector2(1, 1)
 
 
-func handle_attack():
+func _handle_attack():
 	# check if possible to attack
-	if not can_attack:
+	if not _can_attack:
 		return
-	can_attack = false
+	_can_attack = false
 	$AttackTimer.start()
 	
 	# handle show and hide attack hitbox
@@ -62,7 +62,7 @@ func handle_attack():
 
 
 func _on_attack_timer_timeout():
-	can_attack = true
+	_can_attack = true
 
 
 func _on_attack_hitbox_area_entered(area):

@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://6aw2iknw3gux"]
+[gd_scene load_steps=5 format=3 uid="uid://6aw2iknw3gux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_l1yk1"]
 [ext_resource type="Texture2D" uid="uid://8dwwfad7bybr" path="res://assets/texture/TX Player.png" id="1_ymbsv"]
-[ext_resource type="Resource" uid="uid://bnpo3lcqa4oui" path="res://resources/entity/player.tres" id="2_qj0p0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pefr1"]
 size = Vector2(21, 16.5)
@@ -13,7 +12,6 @@ size = Vector2(24, 44.875)
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 6
 script = ExtResource("1_l1yk1")
-entity = ExtResource("2_qj0p0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -10)
