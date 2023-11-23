@@ -44,6 +44,7 @@ func _handle_attack_to_player():
 		return
 	_can_attack = false
 	$AttackTimer.start()
+	_player.deal_damage(_entity.attack_damage)
 
 
 func _on_attack_timer_timeout():
