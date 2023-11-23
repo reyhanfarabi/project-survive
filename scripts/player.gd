@@ -66,5 +66,4 @@ func _on_attack_timer_timeout():
 
 
 func _on_attack_hitbox_area_entered(area):
-	if area.is_in_group("enemies"):
-		print(area.entity.health)		# need to adjust later
+	pass
