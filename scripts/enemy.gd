@@ -1,12 +1,13 @@
 extends Area2D
 
 
+@export var texture: CompressedTexture2D
 @export var _entity: Resource_Entity
 @export var _speed: int = 50
 @export var _attack_cooldown: int = 2
 @export var _target_distance_padding: int = 1
 
-@onready var _player = get_parent().get_node("Player")
+@onready var _player = get_parent().get_parent().get_node("Player")
 
 var _direction: Vector2
 var _can_attack: bool = true
@@ -17,6 +18,7 @@ func _ready():
 
 
 func _start():
+	$Sprite2D.texture = texture
 	$AttackTimer.wait_time = _attack_cooldown
 
 

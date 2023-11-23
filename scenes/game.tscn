@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bce56et1xspna"]
+[gd_scene load_steps=11 format=3 uid="uid://bce56et1xspna"]
 
 [ext_resource type="Texture2D" uid="uid://b1k56huheu54c" path="res://assets/texture/TX Tileset Grass.png" id="1_3sk7a"]
 [ext_resource type="Texture2D" uid="uid://hcmvhwscuw01" path="res://assets/texture/TX Tileset Wall.png" id="2_3iqga"]
 [ext_resource type="PackedScene" uid="uid://6aw2iknw3gux" path="res://scenes/player.tscn" id="3_5vid3"]
-[ext_resource type="PackedScene" uid="uid://cy3yj28aafqjv" path="res://scenes/enemy.tscn" id="5_cp116"]
+[ext_resource type="Texture2D" uid="uid://dpl3e7ctk3mdm" path="res://assets/enemies/Bat/Bat_Fly.png" id="5_rcw45"]
+[ext_resource type="PackedScene" uid="uid://jhq6jsplkmqd" path="res://scenes/enemy_spawner.tscn" id="6_0paq8"]
+[ext_resource type="Texture2D" uid="uid://bpwpe6qbvap82" path="res://assets/enemies/Slime/Slime_Spiked_Idle.png" id="7_0c3xe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_si7rc"]
 texture = ExtResource("1_3sk7a")
@@ -281,7 +283,7 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_smxss")
 
-[node name="Main" type="Node2D"]
+[node name="Game" type="Node2D"]
 
 [node name="TileMapGround" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_2qkb8")
@@ -297,5 +299,5 @@ layer_0/tile_data = PackedInt32Array(917486, 65536, 3, 917487, 131072, 3, 917488
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
-[node name="Enemy" parent="." instance=ExtResource("5_cp116")]
-position = Vector2(98, -26)
+[node name="EnemySpawner" parent="." instance=ExtResource("6_0paq8")]
+_enemy_textures = Array[CompressedTexture2D]([ExtResource("5_rcw45"), ExtResource("7_0c3xe")])
