@@ -17,7 +17,7 @@ func _start():
 	$AttackHitbox.hide()
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var input = Input.get_vector("left", "right", "top", "down")
 	_handle_movement(input)
 	_handle_facing(input)
