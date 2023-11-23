@@ -5,36 +5,40 @@
 [ext_resource type="Resource" uid="uid://bnpo3lcqa4oui" path="res://resources/entity/player.tres" id="2_qj0p0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pefr1"]
-size = Vector2(21.25, 16.5)
+size = Vector2(21, 16.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7102"]
 size = Vector2(24, 44.875)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 2
+collision_layer = 6
 script = ExtResource("1_l1yk1")
-entity = ExtResource("2_qj0p0")
+_entity = ExtResource("2_qj0p0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
 texture = ExtResource("1_ymbsv")
 hframes = 4
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.375, -14)
+position = Vector2(0.5, 8)
 shape = SubResource("RectangleShape2D_pefr1")
 
 [node name="AttackHitbox" type="Area2D" parent="."]
+position = Vector2(0, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
-position = Vector2(-24, -27.4375)
+position = Vector2(-24, 3)
 shape = SubResource("RectangleShape2D_d7102")
 
 [node name="ColorRect" type="ColorRect" parent="AttackHitbox"]
 offset_left = -36.0
-offset_top = -50.0
+offset_top = -19.0
 offset_right = -12.0
-offset_bottom = -5.0
+offset_bottom = 26.0
 color = Color(1, 0.729412, 0, 0.490196)
+metadata/_edit_use_anchors_ = true
 
 [node name="AttackTimer" type="Timer" parent="."]
 
