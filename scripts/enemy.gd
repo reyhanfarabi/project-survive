@@ -27,6 +27,7 @@ func _process(delta):
 	_handle_movement(delta)
 	_handle_facing()
 	_handle_attack_to_player()
+	_handle_destory()
 
 
 func _handle_movement(delta):
@@ -47,6 +48,11 @@ func _handle_attack_to_player():
 	_can_attack = false
 	$AttackTimer.start()
 	_player.deal_damage(_entity.attack_damage)
+
+
+func _handle_destory():
+	if _entity.health <= 0:
+		queue_free()
 
 
 func deal_damage(damage_amount: int):
