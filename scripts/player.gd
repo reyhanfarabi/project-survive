@@ -21,7 +21,6 @@ func _start():
 
 
 func _physics_process(_delta):
-	_game_camera_node.position = position
 	var input = Input.get_vector("left", "right", "top", "down")
 	_handle_movement(input)
 	_handle_facing(input)
