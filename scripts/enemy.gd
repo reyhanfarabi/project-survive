@@ -23,6 +23,8 @@ func _start():
 
 
 func _process(delta):
+	if not _player:
+		return
 	_direction = Vector2(_player.position - position).normalized()
 	_handle_movement(delta)
 	_handle_facing()
