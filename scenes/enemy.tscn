@@ -1,7 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy3yj28aafqjv"]
+[gd_scene load_steps=9 format=3 uid="uid://cy3yj28aafqjv"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_huu1h"]
 [ext_resource type="Resource" uid="uid://bo73v76ajxp2q" path="res://resources/entity/enemy.tres" id="2_qy047"]
+[ext_resource type="Shader" path="res://shaders/enemy.gdshader" id="3_6wp2d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6w4x"]
+resource_local_to_scene = true
+shader = ExtResource("3_6wp2d")
+shader_parameter/is_damage_taken = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg43r"]
 size = Vector2(20, 17)
@@ -100,6 +106,7 @@ script = ExtResource("1_huu1h")
 _entity = ExtResource("2_qy047")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_r6w4x")
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

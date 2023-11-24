@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var _entity: Resource_Entity
 @export var _speed: int = 200
 @export var _attack_cooldown: int = 2
+@export var _damage_shader_delay: float = 0.1
 
 @onready var _game_camera_node: Camera2D = get_node("../GameCamera2D")
 
@@ -73,7 +74,10 @@ func _handle_destory():
 
 
 func deal_damage(damage_amount: int):
+	$Sprite2D.material.set_shader_parameter("is_damage_taken", true)
 	_entity.health -= damage_amount
+	await get_tree().create_timer(_damage_shader_delay).timeout
+	$Sprite2D.material.set_shader_parameter("is_damage_taken", false)
 	print(_entity.health)
 
 
