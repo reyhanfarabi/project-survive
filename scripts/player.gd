@@ -55,10 +55,10 @@ func _handle_attack():
 	_can_attack = false
 	$AttackTimer.start()
 	
-	# handle show and hide attack hitbox
-	$AttackHitbox.show()
-	await get_tree().create_timer(0.5).timeout
-	$AttackHitbox.hide()
+	# handle deal damage to all enemy inside the hitbox
+	for area in $AttackHitbox.get_overlapping_areas():
+		if area.is_in_group("enemies"):
+			area.deal_damage(_entity.attack_damage)
 
 
 func deal_damage(damage_amount: int):
@@ -68,7 +68,3 @@ func deal_damage(damage_amount: int):
 
 func _on_attack_timer_timeout():
 	_can_attack = true
-
-
-func _on_attack_hitbox_area_entered(area):
-	pass
