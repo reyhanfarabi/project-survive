@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
+
 @export var _entity: Resource_Entity
 @export var _speed: int = 200
 @export var _attack_cooldown: int = 2
-@export var _attack_animation: float = 0.5		# could be change later when animation is added
+
+@onready var _game_camera_node: Camera2D = get_node("../GameCamera2D")
 
 var _can_attack: bool = true
 
@@ -13,6 +15,7 @@ func _ready():
 
 
 func _start():
+	$PlayerCamera2D.make_current()
 	$AttackTimer.wait_time = _attack_cooldown
 	$AttackHitbox.hide()
 
@@ -22,6 +25,7 @@ func _physics_process(_delta):
 	_handle_movement(input)
 	_handle_facing(input)
 	_handle_attack()
+	_handle_destory()
 
 
 func _handle_movement(input):
@@ -59,6 +63,12 @@ func _handle_attack():
 	for area in $AttackHitbox.get_overlapping_areas():
 		if area.is_in_group("enemies"):
 			area.deal_damage(_entity.attack_damage)
+
+
+func _handle_destory():
+	if _entity.health <= 0:
+		_game_camera_node.make_current()
+		queue_free()
 
 
 func deal_damage(damage_amount: int):
