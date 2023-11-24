@@ -67,6 +67,7 @@ func _handle_attack():
 
 func _handle_destory():
 	if _entity.health <= 0:
+		_game_camera_node.position = position
 		_game_camera_node.make_current()
 		queue_free()
 
