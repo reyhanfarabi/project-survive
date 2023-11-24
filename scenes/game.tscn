@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dpl3e7ctk3mdm" path="res://assets/enemies/Bat/Bat_Fly.png" id="5_rcw45"]
 [ext_resource type="PackedScene" uid="uid://jhq6jsplkmqd" path="res://scenes/enemy_spawner.tscn" id="6_0paq8"]
 [ext_resource type="Texture2D" uid="uid://bpwpe6qbvap82" path="res://assets/enemies/Slime/Slime_Spiked_Idle.png" id="7_0c3xe"]
-[ext_resource type="PackedScene" uid="uid://chrmuh5jod3kn" path="res://scenes/ui.tscn" id="7_1jlsa"]
+[ext_resource type="PackedScene" uid="uid://dfwwktobs2ab7" path="res://scenes/ui.tscn" id="7_1jlsa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_si7rc"]
 texture = ExtResource("1_3sk7a")

@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_ecn4j")
+max_health = 100
 health = 100
-attack_damage = 20
+attack_damage = 10
