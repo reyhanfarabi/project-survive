@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bce56et1xspna"]
+[gd_scene load_steps=12 format=3 uid="uid://bce56et1xspna"]
 
 [ext_resource type="Texture2D" uid="uid://b1k56huheu54c" path="res://assets/texture/TX Tileset Grass.png" id="1_3sk7a"]
 [ext_resource type="Texture2D" uid="uid://hcmvhwscuw01" path="res://assets/texture/TX Tileset Wall.png" id="2_3iqga"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dpl3e7ctk3mdm" path="res://assets/enemies/Bat/Bat_Fly.png" id="5_rcw45"]
 [ext_resource type="PackedScene" uid="uid://jhq6jsplkmqd" path="res://scenes/enemy_spawner.tscn" id="6_0paq8"]
 [ext_resource type="Texture2D" uid="uid://bpwpe6qbvap82" path="res://assets/enemies/Slime/Slime_Spiked_Idle.png" id="7_0c3xe"]
+[ext_resource type="PackedScene" uid="uid://chrmuh5jod3kn" path="res://scenes/ui.tscn" id="7_1jlsa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_si7rc"]
 texture = ExtResource("1_3sk7a")
@@ -301,3 +302,9 @@ layer_0/tile_data = PackedInt32Array(917486, 65536, 3, 917487, 131072, 3, 917488
 
 [node name="EnemySpawner" parent="." instance=ExtResource("6_0paq8")]
 _enemy_textures = Array[CompressedTexture2D]([ExtResource("5_rcw45"), ExtResource("7_0c3xe")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("7_1jlsa")]
+offset_bottom = 36.0
+size_flags_horizontal = 0
