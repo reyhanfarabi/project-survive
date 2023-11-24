@@ -49,5 +49,10 @@ func _handle_attack_to_player():
 	_player.deal_damage(_entity.attack_damage)
 
 
+func deal_damage(damage_amount: int):
+	_entity.health -= damage_amount
+	print(_entity.health)
+
+
 func _on_attack_timer_timeout():
 	_can_attack = true
