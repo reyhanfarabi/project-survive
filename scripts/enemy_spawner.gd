@@ -6,6 +6,8 @@ extends Node2D
 @export var _amount_per_spawn: int
 @export var _spawn_delay: int
 
+@onready var _player = get_parent().get_node("Player")
+
 var _rng = RandomNumberGenerator.new()
 var _tilemap_position
 var _tilemap_size
@@ -32,6 +34,8 @@ func _set_tilemap_data():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if not _player:
+		return
 	_spawn_enemies()
 
 
