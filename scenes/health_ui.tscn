@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://drtssacttunyc" path="res://assets/health_bar/under.png" id="1_juo7y"]
 [ext_resource type="Script" path="res://scripts/health_ui.gd" id="1_qeims"]
 [ext_resource type="Texture2D" uid="uid://ypoqksfl2c8w" path="res://assets/health_bar/progress.png" id="2_ki7ks"]
-[ext_resource type="Resource" uid="uid://bnpo3lcqa4oui" path="res://resources/entity/player.tres" id="2_tgkoc"]
+[ext_resource type="Resource" uid="uid://c2ghf4uta802a" path="res://resources/entity/player.tres" id="2_tgkoc"]
 
 [node name="HealthUIContainer" type="HBoxContainer"]
 script = ExtResource("1_qeims")

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var _entity: Resource_Entity
+@export var _resource: Resource_Player
 @export var _speed: int = 200
 @export var _attack_cooldown: int = 2
 @export var _damage_shader_delay: float = 0.1
@@ -63,11 +63,11 @@ func _handle_attack():
 	# handle deal damage to all enemy inside the hitbox
 	for area in $AttackHitbox.get_overlapping_areas():
 		if area.is_in_group("enemies"):
-			area.deal_damage(_entity.attack_damage)
+			area.deal_damage(_resource.attack_damage)
 
 
 func _handle_destory():
-	if _entity.health <= 0:
+	if _resource.health <= 0:
 		_game_camera_node.position = position
 		_game_camera_node.make_current()
 		queue_free()
@@ -75,10 +75,10 @@ func _handle_destory():
 
 func deal_damage(damage_amount: int):
 	$Sprite2D.material.set_shader_parameter("is_damage_taken", true)
-	_entity.health -= damage_amount
+	_resource.health -= damage_amount
 	await get_tree().create_timer(_damage_shader_delay).timeout
 	$Sprite2D.material.set_shader_parameter("is_damage_taken", false)
-	print(_entity.health)
+	print(_resource.health)
 
 
 func _on_attack_timer_timeout():

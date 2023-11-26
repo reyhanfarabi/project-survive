@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_l1yk1"]
 [ext_resource type="Texture2D" uid="uid://8dwwfad7bybr" path="res://assets/texture/TX Player.png" id="1_ymbsv"]
-[ext_resource type="Resource" uid="uid://bnpo3lcqa4oui" path="res://resources/entity/player.tres" id="2_qj0p0"]
+[ext_resource type="Resource" uid="uid://c2ghf4uta802a" path="res://resources/entity/player.tres" id="2_qj0p0"]
 [ext_resource type="Shader" path="res://shaders/player.gdshader" id="3_1qxah"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m5hxm"]
@@ -18,7 +18,7 @@ size = Vector2(44, 87)
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 6
 script = ExtResource("1_l1yk1")
-_entity = ExtResource("2_qj0p0")
+_resource = ExtResource("2_qj0p0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_m5hxm")

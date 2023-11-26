@@ -1,7 +1,7 @@
 extends HBoxContainer
 
 
-@export var _player_resource: Resource_Entity
+@export var _player_resource: Resource_Player
 
 
 func _ready():
