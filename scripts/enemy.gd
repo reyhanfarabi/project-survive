@@ -7,8 +7,10 @@ extends Area2D
 @export var _attack_cooldown: int = 2
 @export var _target_distance_padding: int = 1
 @export var _damage_shader_delay: float = 0.1
+@export var _exp_drop_scene: PackedScene
 
 @onready var _player = get_parent().get_parent().get_node("Player")
+@onready var _drops_container = get_parent().get_parent().get_node("DropsContainer")
 
 var _direction: Vector2
 var _can_attack: bool = true
@@ -55,7 +57,14 @@ func _handle_attack_to_player():
 
 func _handle_destory():
 	if _entity.health <= 0:
+		_spawn_exp_drop()
 		queue_free()
+
+
+func _spawn_exp_drop():
+	var e = _exp_drop_scene.instantiate()
+	e.position = position
+	_drops_container.add_child(e)
 
 
 func deal_damage(damage_amount: int):
