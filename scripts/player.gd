@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export var _resource: Resource_Player
 @export var _speed: int = 200
-@export var _attack_cooldown: int = 2
+@export var _attack_cooldown: int = 1
 @export var _damage_shader_delay: float = 0.1
 
 @onready var _game_camera_node: Camera2D = get_node("../GameCamera2D")
@@ -19,6 +19,7 @@ func _start():
 	$PlayerCamera2D.make_current()
 	$AttackTimer.wait_time = _attack_cooldown
 	$AttackHitbox.hide()
+	_resource.setup_level()
 
 
 func _physics_process(_delta):
@@ -77,9 +78,13 @@ func _handle_destory():
 func _collect_drops():
 	for area in $BodyArea.get_overlapping_areas():
 		if area.is_in_group("drops"):
-			_resource.level_experience += area.exp_point
+			_resource.update_level(area.exp_point)
 			area.destroy()
-			print(_resource.level_experience)
+			print(
+				_resource.level, "-",
+				_resource.current_level_experience, "-",
+				_resource.current_level_max_experience
+			)
 
 
 func deal_damage(damage_amount: int):
