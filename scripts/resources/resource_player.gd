@@ -15,7 +15,7 @@ class_name Resource_Player
 
 # level methods
 func setup_level():
-	current_level_experience = level * level_base_multiplier
+	current_level_max_experience = level * level_base_multiplier
 
 func update_level(collected_exp: int):
 	current_level_experience += collected_exp
