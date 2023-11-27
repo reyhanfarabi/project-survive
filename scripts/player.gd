@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 
 @export var _resource: Resource_Player
-@export var _speed: int = 200
-@export var _attack_cooldown: int = 1
 @export var _damage_shader_delay: float = 0.1
 
 @onready var _game_camera_node: Camera2D = get_node("../GameCamera2D")
@@ -17,7 +15,7 @@ func _ready():
 
 func _start():
 	$PlayerCamera2D.make_current()
-	$AttackTimer.wait_time = _attack_cooldown
+	$AttackTimer.wait_time = _resource.attack_cooldown
 	$AttackHitbox.hide()
 	_resource.setup_level()
 
@@ -32,7 +30,7 @@ func _physics_process(_delta):
 
 
 func _handle_movement(input):
-	velocity = _speed * input
+	velocity = _resource.move_speed * input
 	move_and_slide()
 
 
