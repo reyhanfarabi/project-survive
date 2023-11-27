@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://6aw2iknw3gux"]
+[gd_scene load_steps=9 format=3 uid="uid://6aw2iknw3gux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_l1yk1"]
 [ext_resource type="Texture2D" uid="uid://8dwwfad7bybr" path="res://assets/texture/TX Player.png" id="1_ymbsv"]
@@ -15,8 +15,11 @@ size = Vector2(21, 16.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7102"]
 size = Vector2(44, 87)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhitv"]
+size = Vector2(20, 44)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 6
+collision_layer = 14
 script = ExtResource("1_l1yk1")
 _resource = ExtResource("2_qj0p0")
 
@@ -45,6 +48,13 @@ color = Color(1, 0.729412, 0, 0.490196)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
 position = Vector2(-33, 4.5)
 shape = SubResource("RectangleShape2D_d7102")
+
+[node name="BodyArea" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyArea"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_mhitv")
 
 [node name="AttackTimer" type="Timer" parent="."]
 

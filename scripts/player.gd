@@ -27,6 +27,7 @@ func _physics_process(_delta):
 	_handle_facing(input)
 	_handle_attack()
 	_handle_destory()
+	_collect_drops()
 
 
 func _handle_movement(input):
@@ -73,12 +74,19 @@ func _handle_destory():
 		queue_free()
 
 
+func _collect_drops():
+	for area in $BodyArea.get_overlapping_areas():
+		if area.is_in_group("drops"):
+			_resource.level_experience += area.exp_point
+			area.destroy()
+			print(_resource.level_experience)
+
+
 func deal_damage(damage_amount: int):
 	$Sprite2D.material.set_shader_parameter("is_damage_taken", true)
 	_resource.health -= damage_amount
 	await get_tree().create_timer(_damage_shader_delay).timeout
 	$Sprite2D.material.set_shader_parameter("is_damage_taken", false)
-	print(_resource.health)
 
 
 func _on_attack_timer_timeout():

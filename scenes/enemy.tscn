@@ -106,6 +106,7 @@ collision_mask = 4
 script = ExtResource("1_huu1h")
 _entity = ExtResource("2_qy047")
 _exp_drop_scene = ExtResource("3_t0c5r")
+_exp = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_r6w4x")

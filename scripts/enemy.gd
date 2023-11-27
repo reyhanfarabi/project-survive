@@ -8,6 +8,7 @@ extends Area2D
 @export var _target_distance_padding: int = 1
 @export var _damage_shader_delay: float = 0.1
 @export var _exp_drop_scene: PackedScene
+@export var _exp: int
 
 @onready var _player = get_parent().get_parent().get_node("Player")
 @onready var _drops_container = get_parent().get_parent().get_node("DropsContainer")
@@ -64,6 +65,7 @@ func _handle_destory():
 func _spawn_exp_drop():
 	var e = _exp_drop_scene.instantiate()
 	e.position = position
+	e.exp_point = _exp
 	_drops_container.add_child(e)
 
 
