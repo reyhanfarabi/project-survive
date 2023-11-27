@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="Resource_Entity" load_steps=2 format=3 uid="uid://bo73v76ajxp2q"]
+[gd_resource type="Resource" script_class="Resource_Enemy" load_steps=2 format=3 uid="uid://ddwsfhh71htpv"]
 
-[ext_resource type="Script" path="res://scripts/resources/resource_entity.gd" id="1_7vah6"]
+[ext_resource type="Script" path="res://scripts/resources/resource_enemy.gd" id="1_6mj1b"]
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_7vah6")
+script = ExtResource("1_6mj1b")
 max_health = 10
 health = 10
 attack_damage = 1
+move_speed = 50
+attack_cooldown = 2
+exp_point = 1
