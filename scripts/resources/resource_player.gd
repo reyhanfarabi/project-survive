@@ -6,7 +6,7 @@ class_name Resource_Player
 @export var max_health: int
 @export var health: int
 @export var attack_damage: int
-@export var move_speed: int = 200
+@export var move_speed: int = 100
 @export var attack_cooldown: int = 1
 
 # level data
