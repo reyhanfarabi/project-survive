@@ -30,20 +30,25 @@ func _physics_process(_delta):
 
 
 func _handle_movement(input):
+	# animation
+	if input != Vector2.ZERO:
+		$AnimationPlayer.play("walking")
+	else:
+		$AnimationPlayer.play("idle")
+	
+	# logic
 	velocity = _resource.move_speed * input
 	move_and_slide()
 
 
-func _handle_facing(input):
+func _handle_facing(input):	
 	# handle horizontal facing
 	if input.x > 0:
-		$Sprite2D.frame = 2
-		get_node("Sprite2D").set_flip_h(true)
+		get_node("Sprite2D").set_flip_h(false)
 		$AttackHitbox.scale = Vector2(-1, 1)
 		
 	elif input.x < 0:
-		$Sprite2D.frame = 2
-		get_node("Sprite2D").set_flip_h(false)
+		get_node("Sprite2D").set_flip_h(true)
 		$AttackHitbox.scale = Vector2(1, 1)
 
 
@@ -71,7 +76,7 @@ func _collect_drops():
 	for area in $BodyArea.get_overlapping_areas():
 		if area.is_in_group("drops"):
 			_resource.update_level(area.exp_point)
-			area.destroy()
+			area.destroy()	
 
 
 func _get_mouse_lookat_vector():
