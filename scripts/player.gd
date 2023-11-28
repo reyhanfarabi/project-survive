@@ -72,11 +72,6 @@ func _collect_drops():
 		if area.is_in_group("drops"):
 			_resource.update_level(area.exp_point)
 			area.destroy()
-			print(
-				_resource.level, "-",
-				_resource.current_level_experience, "-",
-				_resource.current_level_max_experience
-			)
 
 
 func _get_mouse_lookat_vector():
