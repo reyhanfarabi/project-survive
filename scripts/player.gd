@@ -23,7 +23,7 @@ func _start():
 func _physics_process(_delta):
 	var input = Input.get_vector("left", "right", "top", "down")
 	_handle_movement(input)
-	_handle_facing(input)
+	_handle_facing(_get_mouse_lookat_vector())
 	_handle_attack()
 	_handle_destory()
 	_collect_drops()
@@ -35,12 +35,6 @@ func _handle_movement(input):
 
 
 func _handle_facing(input):
-	# handle vertical facing
-	if input.y > 0:
-		$Sprite2D.frame = 0
-	elif input.y < 0:
-		$Sprite2D.frame = 1
-	
 	# handle horizontal facing
 	if input.x > 0:
 		$Sprite2D.frame = 2
@@ -83,6 +77,12 @@ func _collect_drops():
 				_resource.current_level_experience, "-",
 				_resource.current_level_max_experience
 			)
+
+
+func _get_mouse_lookat_vector():
+	var center_viewport_position = get_viewport_rect().size / 2
+	var mouse_position = get_viewport().get_mouse_position()
+	return (mouse_position - center_viewport_position).normalized()
 
 
 func deal_damage(damage_amount: int):
