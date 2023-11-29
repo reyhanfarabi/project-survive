@@ -16,15 +16,14 @@ func _ready():
 func _start():
 	$PlayerCamera2D.make_current()
 	$AttackTimer.wait_time = _resource.attack_cooldown
-	$AttackHitbox.hide()
 	_resource.setup_level()
 
 
 func _physics_process(_delta):
 	var input = Input.get_vector("left", "right", "top", "down")
 	_handle_movement(input)
-	_handle_facing(_get_mouse_lookat_vector())
-	_handle_attack()
+	_handle_character_facing(_get_mouse_lookat_vector())
+	_handle_attack(_get_mouse_lookat_vector())
 	_handle_destory()
 	_collect_drops()
 
@@ -41,18 +40,24 @@ func _handle_movement(input):
 	move_and_slide()
 
 
-func _handle_facing(input):	
+func _handle_character_facing(input):
 	# handle horizontal facing
 	if input.x > 0:
 		get_node("Sprite2D").set_flip_h(false)
-		$AttackHitbox.scale = Vector2(-1, 1)
 		
 	elif input.x < 0:
 		get_node("Sprite2D").set_flip_h(true)
-		$AttackHitbox.scale = Vector2(1, 1)
 
 
-func _handle_attack():
+func _handle_weapon_facing(look_at_vec):
+	$Weapon/Sword.rotation = look_at_vec.angle()
+	$Weapon/AttackCollisionShape.rotation = look_at_vec.angle()
+
+
+func _handle_attack(look_at_vec):
+	# handle where to attack
+	_handle_weapon_facing(look_at_vec)
+	
 	# check if possible to attack
 	if not _can_attack:
 		return
@@ -60,7 +65,7 @@ func _handle_attack():
 	$AttackTimer.start()
 	
 	# handle deal damage to all enemy inside the hitbox
-	for area in $AttackHitbox.get_overlapping_areas():
+	for area in $Weapon.get_overlapping_areas():
 		if area.is_in_group("enemies"):
 			area.deal_damage(_resource.attack_damage)
 
@@ -76,7 +81,7 @@ func _collect_drops():
 	for area in $BodyArea.get_overlapping_areas():
 		if area.is_in_group("drops"):
 			_resource.update_level(area.exp_point)
-			area.destroy()	
+			area.destroy()
 
 
 func _get_mouse_lookat_vector():
