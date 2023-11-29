@@ -44,11 +44,9 @@ func _handle_character_facing(input):
 	# handle horizontal facing
 	if input.x > 0:
 		get_node("Sprite2D").set_flip_h(false)
-		#$AttackHitbox.scale = Vector2(-1, 1)
 		
 	elif input.x < 0:
 		get_node("Sprite2D").set_flip_h(true)
-		#$AttackHitbox.scale = Vector2(1, 1)
 
 
 func _handle_weapon_facing(look_at_vec):
@@ -83,7 +81,7 @@ func _collect_drops():
 	for area in $BodyArea.get_overlapping_areas():
 		if area.is_in_group("drops"):
 			_resource.update_level(area.exp_point)
-			area.destroy()	
+			area.destroy()
 
 
 func _get_mouse_lookat_vector():
