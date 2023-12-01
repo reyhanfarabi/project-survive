@@ -19,7 +19,7 @@ func _config_health_digit():
 	$MaxHealth.set_text("/ " + str(_player_resource.max_health))
 
 
-func _process(delta):
+func _process(_delta):
 	_update_health_bar()
 	_update_health_digit()
 
