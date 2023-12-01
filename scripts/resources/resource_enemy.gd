@@ -3,6 +3,8 @@ extends Resource
 class_name Resource_Enemy
 
 # enemy data
+@export var name: String
+@export var sprite: Texture2D
 @export var max_health: int
 @export var health: int
 @export var attack_damage: int

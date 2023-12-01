@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var _resources: Array[ResourceEnemySpawner]
+@export var _resources: Array[Resource_Enemy_Spawner]
 
 var _rng = RandomNumberGenerator.new()
 var _tilemap_position
@@ -22,6 +22,7 @@ func _spawn_enemy_sources():
 	for spawner in _resources:
 		for i in spawner.spawner_max_amount:
 			var es := spawner.scene.instantiate()
+			es._resource = spawner
 			es.position = _get_random_location()
 			add_child(es)
 

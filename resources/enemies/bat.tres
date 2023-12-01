@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Resource_Enemy" load_steps=3 format=3 uid="uid://cd1v8uaym1rdw"]
+
+[ext_resource type="Script" path="res://scripts/resources/resource_enemy.gd" id="1_hw5v1"]
+[ext_resource type="Texture2D" uid="uid://dpl3e7ctk3mdm" path="res://assets/enemies/Bat/Bat_Fly.png" id="2_2knja"]
+
+[resource]
+script = ExtResource("1_hw5v1")
+name = "Bat"
+sprite = ExtResource("2_2knja")
+max_health = 10
+health = 10
+attack_damage = 1
+move_speed = 50
+attack_cooldown = 2
+exp_point = 1

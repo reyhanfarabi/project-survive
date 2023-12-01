@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Resource_Enemy" load_steps=3 format=3 uid="uid://cown4uefryjwd"]
+
+[ext_resource type="Script" path="res://scripts/resources/resource_enemy.gd" id="1_f641i"]
+[ext_resource type="Texture2D" uid="uid://bpwpe6qbvap82" path="res://assets/enemies/Slime/Slime_Spiked_Idle.png" id="2_auapi"]
+
+[resource]
+script = ExtResource("1_f641i")
+name = "Slime"
+sprite = ExtResource("2_auapi")
+max_health = 10
+health = 10
+attack_damage = 1
+move_speed = 50
+attack_cooldown = 2
+exp_point = 1
