@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="ResourceEnemySpawner" load_steps=3 format=3 uid="uid://bcn8gxsuhklha"]
 
-[ext_resource type="PackedScene" uid="uid://dige2o05kf1er" path="res://scenes/source_spawner/slime_spawner.tscn" id="1_am4vi"]
-[ext_resource type="Script" path="res://scripts/resources/resource_enemy_spawner.gd" id="1_tw6f2"]
+[ext_resource type="PackedScene" uid="uid://dige2o05kf1er" path="res://scenes/source_spawner/slime_spawner.tscn" id="1_ejg08"]
+[ext_resource type="Script" path="res://scripts/resources/resource_enemy_spawner.gd" id="2_6jvhw"]
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_tw6f2")
+script = ExtResource("2_6jvhw")
 name = "Slime Spawner"
-scene = ExtResource("1_am4vi")
+scene = ExtResource("1_ejg08")
 spawn_time_gap = 2.0
-spawner_max_amount = 10
+spawner_max_amount = 5

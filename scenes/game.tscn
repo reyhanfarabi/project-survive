@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bce56et1xspna"]
+[gd_scene load_steps=12 format=3 uid="uid://bce56et1xspna"]
 
 [ext_resource type="Texture2D" uid="uid://b1k56huheu54c" path="res://assets/texture/TX Tileset Grass.png" id="1_3sk7a"]
 [ext_resource type="Texture2D" uid="uid://hcmvhwscuw01" path="res://assets/texture/TX Tileset Wall.png" id="2_3iqga"]
 [ext_resource type="PackedScene" uid="uid://6aw2iknw3gux" path="res://scenes/player.tscn" id="3_5vid3"]
 [ext_resource type="Resource" uid="uid://bcn8gxsuhklha" path="res://resources/source_spawner/slime_spawner.tres" id="4_1gybc"]
+[ext_resource type="Resource" uid="uid://klotmfuuu128" path="res://resources/source_spawner/bat_spawner.tres" id="6_psk6g"]
 [ext_resource type="PackedScene" uid="uid://dfwwktobs2ab7" path="res://scenes/ui.tscn" id="7_1jlsa"]
 [ext_resource type="Script" path="res://scripts/enemy_source_spawner.gd" id="8_p0jw0"]
 
@@ -303,7 +304,7 @@ layer_0/tile_data = PackedInt32Array(917486, 65536, 3, 917487, 131072, 3, 917488
 
 [node name="EnemySourceSpawner" type="Node2D" parent="."]
 script = ExtResource("8_p0jw0")
-_resources = Array[Resource("res://scripts/resources/resource_enemy_spawner.gd")]([ExtResource("4_1gybc")])
+_resources = Array[Resource("res://scripts/resources/resource_enemy_spawner.gd")]([ExtResource("4_1gybc"), ExtResource("6_psk6g")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
