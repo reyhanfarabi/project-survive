@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://jhq6jsplkmqd"]
 
-[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="1_y447n"]
-[ext_resource type="PackedScene" uid="uid://cy3yj28aafqjv" path="res://scenes/enemy.tscn" id="2_0dk4u"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner_old.gd" id="1_76p0l"]
+[ext_resource type="PackedScene" uid="uid://cy3yj28aafqjv" path="res://scenes/enemy.tscn" id="2_qx3qq"]
 
 [node name="EnemySpawner" type="Node2D"]
-script = ExtResource("1_y447n")
-_enemy_scene = ExtResource("2_0dk4u")
+script = ExtResource("1_76p0l")
+_enemy_scene = ExtResource("2_qx3qq")
 _amount_per_spawn = 10
 _spawn_delay = 1
 
