@@ -1,17 +1,20 @@
 extends Area2D
 
 
-@export var texture: CompressedTexture2D
-@export var _resource: Resource_Enemy
+@export var _resource: Resource_Enemy: set = set_resource
 @export var _target_distance_padding: int = 1
 @export var _damage_shader_delay: float = 0.1
 @export var _exp_drop_scene: PackedScene
 
-@onready var _player = get_parent().get_parent().get_node("Player")
-@onready var _drops_container = get_parent().get_parent().get_node("DropsContainer")
+@onready var _player = get_node("../../Player")
+@onready var _drops_container = get_node("../../DropsContainer")
 
 var _direction: Vector2
 var _can_attack: bool = true
+
+
+func set_resource(value: Resource_Enemy):
+	_resource = value
 
 
 func _ready():
@@ -19,7 +22,7 @@ func _ready():
 
 
 func _start():
-	$Sprite2D.texture = texture
+	$Sprite2D.texture = _resource.sprite
 	$AttackTimer.wait_time = _resource.attack_cooldown
 
 

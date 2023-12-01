@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cy3yj28aafqjv"]
+[gd_scene load_steps=9 format=3 uid="uid://cy3yj28aafqjv"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_huu1h"]
-[ext_resource type="Resource" uid="uid://ddwsfhh71htpv" path="res://resources/entity/enemy.tres" id="2_qy047"]
 [ext_resource type="Shader" path="res://shaders/enemy.gdshader" id="3_6wp2d"]
 [ext_resource type="PackedScene" uid="uid://bulxxaunr0b80" path="res://scenes/drops/drop_exp.tscn" id="3_t0c5r"]
 
@@ -104,7 +103,6 @@ _data = {
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_huu1h")
-_resource = ExtResource("2_qy047")
 _exp_drop_scene = ExtResource("3_t0c5r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
