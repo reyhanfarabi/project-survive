@@ -24,6 +24,4 @@ shape = SubResource("CircleShape2D_rcy3v")
 
 [node name="SpawnGapTimer" type="Timer" parent="."]
 
-[node name="SpawnPoint" type="Node2D" parent="."]
-
 [connection signal="timeout" from="SpawnGapTimer" to="." method="_on_spawn_gap_timer_timeout"]
