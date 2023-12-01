@@ -36,7 +36,7 @@ func _set_tilemap_data():
 func _process(delta):
 	if not _player:
 		return
-	_spawn_enemies()
+	#_spawn_enemies()
 
 
 func _spawn_enemies():

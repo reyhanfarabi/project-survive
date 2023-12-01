@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceEnemySpawner" load_steps=3 format=3 uid="uid://klotmfuuu128"]
+
+[ext_resource type="Script" path="res://scripts/resources/resource_enemy_spawner.gd" id="1_fu4su"]
+[ext_resource type="PackedScene" uid="uid://btj2e3qjpxwnj" path="res://scenes/source_spawner/bat_spawner.tscn" id="1_xaq5h"]
+
+[resource]
+script = ExtResource("1_fu4su")
+name = "Bat Spawner"
+scene = ExtResource("1_xaq5h")
+spawn_time_gap = 2.0
+spawner_max_amount = 5
