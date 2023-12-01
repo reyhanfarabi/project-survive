@@ -9,7 +9,7 @@ func _ready():
 	_set_level_experience()
 
 
-func _process(delta):
+func _process(_delta):
 	_set_level()
 	_set_level_experience()
 

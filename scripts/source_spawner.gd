@@ -14,7 +14,7 @@ func _ready():
 	$SpawnGapTimer.wait_time = _resource.spawn_time_gap
 
 
-func _process(delta):
+func _process(_delta):
 	if not _player:
 		return
 	_spawn_enemy()

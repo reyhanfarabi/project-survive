@@ -9,7 +9,6 @@ var _tilemap_size
 var _tilemap_cell_size
 const _TILEMAP_SPAWN_SIZE_PADDING := 1     # this will add padding to spawn area so it will not spawn close to map edge
 const _TILEMAP_SPAWN_BOTTOM_PADDING := 2   # this will prevent spawn outside of playable area on the bottom map
-var _can_spawn := true
 
 
 func _ready():
