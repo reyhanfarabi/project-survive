@@ -21,23 +21,10 @@ func _start():
 
 func _physics_process(_delta):
 	var input = Input.get_vector("left", "right", "top", "down")
-	_handle_movement(input)
 	_handle_character_facing(_get_mouse_lookat_vector())
 	_handle_attack(_get_mouse_lookat_vector())
 	_handle_destory()
 	_collect_drops()
-
-
-func _handle_movement(input):
-	# animation
-	if input != Vector2.ZERO:
-		$AnimationPlayer.play("walking")
-	else:
-		$AnimationPlayer.play("idle")
-	
-	# logic
-	velocity = _resource.move_speed * input
-	move_and_slide()
 
 
 func _handle_character_facing(input):
