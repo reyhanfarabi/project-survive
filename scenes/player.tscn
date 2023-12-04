@@ -227,7 +227,9 @@ libraries = {
 "": SubResource("AnimationLibrary_100jl")
 }
 
-[node name="PlayerMovementComponent" parent="." instance=ExtResource("5_hm3sn")]
+[node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("_body", "_animation_player") instance=ExtResource("5_hm3sn")]
+_body = NodePath("..")
+_animation_player = NodePath("../AnimationPlayer")
 
 [node name="PlayerLookAtComponent" type="Node2D" parent="."]
 
