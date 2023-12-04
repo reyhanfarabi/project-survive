@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var _resource: Resource_Player
 @export var _damage_shader_delay: float = 0.1
+@export var _player_look_at_comp: PlayerLookAtComponent
 
 @onready var _game_camera_node: Camera2D = get_node("../GameCamera2D")
 
@@ -20,20 +21,9 @@ func _start():
 
 
 func _physics_process(_delta):
-	var input = Input.get_vector("left", "right", "top", "down")
-	_handle_character_facing(_get_mouse_lookat_vector())
-	_handle_attack(_get_mouse_lookat_vector())
+	_handle_attack(_player_look_at_comp.get_look_at())
 	_handle_destory()
 	_collect_drops()
-
-
-func _handle_character_facing(input):
-	# handle horizontal facing
-	if input.x > 0:
-		get_node("Sprite2D").set_flip_h(false)
-		
-	elif input.x < 0:
-		get_node("Sprite2D").set_flip_h(true)
 
 
 func _handle_weapon_facing(look_at_vec):
@@ -69,12 +59,6 @@ func _collect_drops():
 		if area.is_in_group("drops"):
 			_resource.update_level(area.exp_point)
 			area.destroy()
-
-
-func _get_mouse_lookat_vector():
-	var center_viewport_position = get_viewport_rect().size / 2
-	var mouse_position = get_viewport().get_mouse_position()
-	return (mouse_position - center_viewport_position).normalized()
 
 
 func deal_damage(damage_amount: int):
