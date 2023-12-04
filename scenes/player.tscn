@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://c2ghf4uta802a" path="res://resources/entity/player.tres" id="2_qj0p0"]
 [ext_resource type="Shader" path="res://shaders/player.gdshader" id="3_1qxah"]
 [ext_resource type="Texture2D" uid="uid://bmqmoixufgv1m" path="res://assets/hooded_protagonist/character_sprite.png" id="4_plceh"]
-[ext_resource type="Script" path="res://scripts/player/player_movement_component.gd" id="5_q1hsw"]
+[ext_resource type="PackedScene" uid="uid://dvkfa15qiwcra" path="res://scenes/player/player_movement_component.tscn" id="5_hm3sn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m5hxm"]
 shader = ExtResource("3_1qxah")
@@ -227,10 +227,8 @@ libraries = {
 "": SubResource("AnimationLibrary_100jl")
 }
 
-[node name="PlayerMovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("_body", "_animation_player")]
-script = ExtResource("5_q1hsw")
-_resource = ExtResource("2_qj0p0")
-_body = NodePath("..")
-_animation_player = NodePath("../AnimationPlayer")
+[node name="PlayerMovementComponent" parent="." instance=ExtResource("5_hm3sn")]
+
+[node name="PlayerLookAtComponent" type="Node2D" parent="."]
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
