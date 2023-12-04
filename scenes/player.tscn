@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://6aw2iknw3gux"]
+[gd_scene load_steps=14 format=3 uid="uid://6aw2iknw3gux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_l1yk1"]
 [ext_resource type="Resource" uid="uid://c2ghf4uta802a" path="res://resources/entity/player.tres" id="2_qj0p0"]
 [ext_resource type="Shader" path="res://shaders/player.gdshader" id="3_1qxah"]
 [ext_resource type="Texture2D" uid="uid://bmqmoixufgv1m" path="res://assets/hooded_protagonist/character_sprite.png" id="4_plceh"]
 [ext_resource type="PackedScene" uid="uid://dvkfa15qiwcra" path="res://scenes/player/player_movement_component.tscn" id="5_hm3sn"]
+[ext_resource type="PackedScene" uid="uid://wuepqnu7tptu" path="res://scenes/player/player_look_at_component.tscn" id="6_l8n6l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m5hxm"]
 shader = ExtResource("3_1qxah")
@@ -181,10 +182,11 @@ _data = {
 "walking": SubResource("Animation_wflf6")
 }
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_player_look_at_comp") groups=["player"]]
 collision_layer = 14
 script = ExtResource("1_l1yk1")
 _resource = ExtResource("2_qj0p0")
+_player_look_at_comp = NodePath("PlayerLookAtComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_m5hxm")
@@ -230,5 +232,8 @@ libraries = {
 [node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("_body", "_animation_player") instance=ExtResource("5_hm3sn")]
 _body = NodePath("..")
 _animation_player = NodePath("../AnimationPlayer")
+
+[node name="PlayerLookAtComponent" parent="." node_paths=PackedStringArray("_sprite") instance=ExtResource("6_l8n6l")]
+_sprite = NodePath("../Sprite2D")
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
