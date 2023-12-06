@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://weapons/Sword/sword.gd" id="1_uf0qa"]
 
-[node name="WeaponSwordComponent" type="Area2D"]
+[node name="WeaponSwordComponent" type="Area2D" groups=["weapons"]]
 collision_mask = 4
 script = ExtResource("1_uf0qa")
 
