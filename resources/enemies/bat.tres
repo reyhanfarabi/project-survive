@@ -7,8 +7,8 @@
 script = ExtResource("1_hw5v1")
 name = "Bat"
 sprite = ExtResource("2_2knja")
-max_health = 10
-health = 10
+max_health = 1
+health = 1
 attack_damage = 1
 move_speed = 50
 attack_cooldown = 2
