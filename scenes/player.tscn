@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://6aw2iknw3gux"]
+[gd_scene load_steps=16 format=3 uid="uid://6aw2iknw3gux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_l1yk1"]
 [ext_resource type="Resource" uid="uid://c2ghf4uta802a" path="res://resources/entity/player.tres" id="2_qj0p0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dvkfa15qiwcra" path="res://scenes/player/player_movement_component.tscn" id="5_hm3sn"]
 [ext_resource type="PackedScene" uid="uid://wuepqnu7tptu" path="res://scenes/player/player_look_at_component.tscn" id="6_l8n6l"]
 [ext_resource type="PackedScene" uid="uid://cp4h3qqjkkkjs" path="res://weapons/Sword/sword.tscn" id="7_j5af7"]
+[ext_resource type="PackedScene" uid="uid://dagmveyrwqto1" path="res://scenes/collect_drops_component.tscn" id="8_hylks"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m5hxm"]
 shader = ExtResource("3_1qxah")
@@ -14,9 +15,6 @@ shader_parameter/is_damage_taken = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pefr1"]
 size = Vector2(16, 8.25)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhitv"]
-size = Vector2(16, 28)
 
 [sub_resource type="Animation" id="Animation_5o7e5"]
 length = 0.001
@@ -183,6 +181,9 @@ _data = {
 "walking": SubResource("Animation_wflf6")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nacx"]
+size = Vector2(16, 28)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 14
 script = ExtResource("1_l1yk1")
@@ -198,14 +199,6 @@ vframes = 9
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 11.875)
 shape = SubResource("RectangleShape2D_pefr1")
-
-[node name="BodyArea" type="Area2D" parent="."]
-position = Vector2(0, 8)
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyArea"]
-position = Vector2(-1, -8)
-shape = SubResource("RectangleShape2D_mhitv")
 
 [node name="PlayerCamera2D" type="Camera2D" parent="."]
 
@@ -223,3 +216,12 @@ _animation_player = NodePath("../AnimationPlayer")
 _sprite = NodePath("../Sprite2D")
 
 [node name="WeaponSwordComponent" parent="." instance=ExtResource("7_j5af7")]
+
+[node name="CollectDropsComponent" parent="." instance=ExtResource("8_hylks")]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectDropsComponent"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_7nacx")
+
+[connection signal="trigger_drop_effect" from="CollectDropsComponent" to="." method="_on_collect_drops_component_trigger_drop_effect"]
