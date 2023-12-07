@@ -6,7 +6,7 @@
 script = ExtResource("1_ooqcj")
 max_health = 100
 health = 100
-attack_damage = 10
+attack_damage = 1
 move_speed = 100
 attack_cooldown = 1
 level = 1

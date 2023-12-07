@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://wuepqnu7tptu"]
+
+[ext_resource type="Script" path="res://scripts/player/player_look_at_component.gd" id="1_mw4cq"]
+
+[node name="PlayerLookAtComponent" type="Node2D" node_paths=PackedStringArray("_sprite")]
+script = ExtResource("1_mw4cq")
+_sprite = NodePath("")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp4h3qqjkkkjs"]
+
+[ext_resource type="Script" path="res://weapons/Sword/sword.gd" id="1_uf0qa"]
+
+[node name="WeaponSwordComponent" type="Area2D" groups=["weapons"]]
+collision_mask = 4
+script = ExtResource("1_uf0qa")
+
+[node name="SpriteTemplate" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 50, 0)
+width = 1.0
+
+[node name="AttackCollisionShape" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(25, -43, 32, -38, 38, -32, 43, -25, 47, -17, 49, -9, 50, 0, 49, 9, 47, 17, 43, 25, 38, 32, 32, 38, 25, 43, 0, 0)
+
+[node name="AttackDelayTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="AttackDelayTimer" to="." method="_on_attack_delay_timer_timeout"]
