@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dagmveyrwqto1"]
+
+[ext_resource type="Script" path="res://scripts/collect_drops_component.gd" id="1_khj7m"]
+
+[node name="CollectDropsComponent" type="Area2D"]
+script = ExtResource("1_khj7m")
