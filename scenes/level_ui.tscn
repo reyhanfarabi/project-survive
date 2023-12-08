@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://qda4pohc0ss"]
+
+[ext_resource type="Script" path="res://scripts/level_ui.gd" id="1_6wrsy"]
+[ext_resource type="Texture2D" uid="uid://drtssacttunyc" path="res://assets/health_bar/under.png" id="1_fjjte"]
+[ext_resource type="Texture2D" uid="uid://ypoqksfl2c8w" path="res://assets/health_bar/progress.png" id="2_8rmql"]
+[ext_resource type="Resource" uid="uid://c2ghf4uta802a" path="res://resources/entity/player.tres" id="2_f18yr"]
+
+[node name="LevelUIContainer" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 18)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+script = ExtResource("1_6wrsy")
+_player_resource = ExtResource("2_f18yr")
+
+[node name="LevelLabelContainer" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0, 0, 0, 0.301961)
+
+[node name="LevelText" type="Label" parent="LevelLabelContainer"]
+layout_mode = 0
+offset_left = 6.0
+offset_right = 34.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 11
+text = "Level"
+vertical_alignment = 1
+
+[node name="LevelNumber" type="Label" parent="LevelLabelContainer"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 58.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 11
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LevelEXPBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(10, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 0.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_fjjte")
+texture_progress = ExtResource("2_8rmql")

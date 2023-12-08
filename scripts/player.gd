@@ -1,35 +1,38 @@
 extends CharacterBody2D
 
 
-@export var speed = 200
+@export var _resource: Resource_Player
+@export var _damage_shader_delay: float = 0.1
+
+@onready var _game_camera_node: Camera2D = get_node("../GameCamera2D")
 
 
-func _physics_process(delta):
-	var input = Input.get_vector("left", "right", "top", "down")
-	handle_movement(input)
-	handle_facing(input)
-	pass
+func _ready():
+	_start()
 
 
-func handle_movement(input):
-	velocity = speed * input
-	move_and_slide()
-	pass
+func _start():
+	$PlayerCamera2D.make_current()
+	_resource.setup_level()
 
 
-func handle_facing(input):
-	# handle vertical facing
-	if input.y > 0:
-		$Sprite2D.frame = 0
-	elif input.y < 0:
-		$Sprite2D.frame = 1
-	
-	# handle horizontal facing
-	if input.x > 0:
-		$Sprite2D.frame = 2
-		get_node("Sprite2D").set_flip_h(true)
-	elif input.x < 0:
-		$Sprite2D.frame = 2
-		get_node("Sprite2D").set_flip_h(false)
-	
-	pass
+func _physics_process(_delta):
+	_handle_destory()
+
+
+func _handle_destory():
+	if _resource.health <= 0:
+		_game_camera_node.position = position
+		_game_camera_node.make_current()
+		queue_free()
+
+
+func deal_damage(damage_amount: int):
+	$Sprite2D.material.set_shader_parameter("is_damage_taken", true)
+	_resource.health -= damage_amount
+	await get_tree().create_timer(_damage_shader_delay).timeout
+	$Sprite2D.material.set_shader_parameter("is_damage_taken", false)
+
+
+func _on_collect_drops_component_trigger_drop_effect(drop) -> void:
+	_resource.update_level(drop.exp_point)

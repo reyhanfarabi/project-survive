@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://btj2e3qjpxwnj"]
+
+[ext_resource type="Script" path="res://scripts/source_spawner.gd" id="1_ioyre"]
+[ext_resource type="Texture2D" uid="uid://ckxi16d5e7t1h" path="res://assets/texture/TX Props.png" id="1_yyibe"]
+[ext_resource type="PackedScene" uid="uid://cy3yj28aafqjv" path="res://scenes/enemy.tscn" id="2_ek181"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v66mf"]
+atlas = ExtResource("1_yyibe")
+region = Rect2(416, 8, 96, 96)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rcy3v"]
+radius = 29.0172
+
+[node name="SlimeSpawner" type="StaticBody2D"]
+script = ExtResource("1_ioyre")
+_enemy_scene = ExtResource("2_ek181")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_v66mf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 36)
+shape = SubResource("CircleShape2D_rcy3v")
+
+[node name="SpawnGapTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="SpawnGapTimer" to="." method="_on_spawn_gap_timer_timeout"]
