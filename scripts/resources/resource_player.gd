@@ -1,12 +1,8 @@
-extends Resource
+extends Resource_Entity
 
 class_name Resource_Player
 
-# base data
-@export var max_health: int
-@export var health: int
-@export var attack_damage: int
-@export var move_speed: int = 100
+# additional base data
 @export var attack_cooldown: int = 1
 
 # level data
