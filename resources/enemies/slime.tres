@@ -7,9 +7,9 @@
 script = ExtResource("1_f641i")
 name = "Slime"
 sprite = ExtResource("2_auapi")
+attack_cooldown = 2
+exp_point = 1
 max_health = 1
 health = 1
 attack_damage = 1
 move_speed = 50
-attack_cooldown = 2
-exp_point = 1
