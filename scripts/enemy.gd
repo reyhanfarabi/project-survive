@@ -3,9 +3,9 @@ extends Area2D
 
 @export var _resource: Resource_Enemy: set = set_resource
 @export var _target_distance_padding: int = 1
-@export var _damage_shader_delay: float = 0.1
 @export var _exp_drop_scene: PackedScene
 @export var _destroy_comp: DestroyComponent
+@export var _flicker_effect_comp: FlickerEffectComponent
 
 @onready var _player = get_node("../../Player")
 @onready var _drops_container = get_node("../../DropsContainer")
@@ -65,10 +65,8 @@ func _spawn_exp_drop():
 
 
 func deal_damage(damage_amount: int):
-	$Sprite2D.material.set_shader_parameter("is_damage_taken", true)
+	_flicker_effect_comp.trigger_flicker()
 	_resource.health -= damage_amount
-	await get_tree().create_timer(_damage_shader_delay).timeout
-	$Sprite2D.material.set_shader_parameter("is_damage_taken", false)
 
 
 func _on_attack_timer_timeout():
