@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var _resource: Resource_Player
 @export var _damage_shader_delay: float = 0.1
+@export var _destroy_comp: DestroyComponent
 
 @onready var _game_camera_node: Camera2D = get_node("../GameCamera2D")
 
@@ -17,14 +18,7 @@ func _start():
 
 
 func _physics_process(_delta):
-	_handle_destory()
-
-
-func _handle_destory():
-	if _resource.health <= 0:
-		_game_camera_node.position = position
-		_game_camera_node.make_current()
-		queue_free()
+	_destroy_comp.handle_destroy(_resource.health)
 
 
 func deal_damage(damage_amount: int):
@@ -36,3 +30,9 @@ func deal_damage(damage_amount: int):
 
 func _on_collect_drops_component_trigger_drop_effect(drop) -> void:
 	_resource.update_level(drop.exp_point)
+
+
+func _on_destroy_component_trigger_side_effect() -> void:
+	# change active camera to camera inside Game Node
+	_game_camera_node.position = position
+	_game_camera_node.make_current()
