@@ -5,6 +5,7 @@ extends Area2D
 @export var _target_distance_padding: int = 1
 @export var _damage_shader_delay: float = 0.1
 @export var _exp_drop_scene: PackedScene
+@export var _destroy_comp: DestroyComponent
 
 @onready var _player = get_node("../../Player")
 @onready var _drops_container = get_node("../../DropsContainer")
@@ -33,7 +34,7 @@ func _process(delta):
 	_handle_movement(delta)
 	_handle_facing()
 	_handle_attack_to_player()
-	_handle_destory()
+	_destroy_comp.handle_destroy(_resource.health)
 
 
 func _handle_movement(delta):
@@ -56,12 +57,6 @@ func _handle_attack_to_player():
 	_player.deal_damage(_resource.attack_damage)
 
 
-func _handle_destory():
-	if _resource.health <= 0:
-		_spawn_exp_drop()
-		queue_free()
-
-
 func _spawn_exp_drop():
 	var e = _exp_drop_scene.instantiate()
 	e.position = position
@@ -78,3 +73,7 @@ func deal_damage(damage_amount: int):
 
 func _on_attack_timer_timeout():
 	_can_attack = true
+
+
+func _on_destroy_component_trigger_side_effect() -> void:
+	_spawn_exp_drop()

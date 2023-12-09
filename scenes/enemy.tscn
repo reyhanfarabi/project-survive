@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cy3yj28aafqjv"]
+[gd_scene load_steps=10 format=3 uid="uid://cy3yj28aafqjv"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_huu1h"]
 [ext_resource type="Shader" path="res://shaders/enemy.gdshader" id="3_6wp2d"]
 [ext_resource type="PackedScene" uid="uid://bulxxaunr0b80" path="res://scenes/drops/drop_exp.tscn" id="3_t0c5r"]
+[ext_resource type="PackedScene" uid="uid://bmfwuew5beqjc" path="res://scenes/destroy_component.tscn" id="4_xjjl3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6w4x"]
 resource_local_to_scene = true
@@ -99,11 +100,12 @@ _data = {
 "idle": SubResource("Animation_tqh6n")
 }
 
-[node name="Enemy" type="Area2D" groups=["enemies"]]
+[node name="Enemy" type="Area2D" node_paths=PackedStringArray("_destroy_comp") groups=["enemies"]]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_huu1h")
 _exp_drop_scene = ExtResource("3_t0c5r")
+_destroy_comp = NodePath("DestroyComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_r6w4x")
@@ -120,5 +122,7 @@ libraries = {
 }
 
 [node name="AttackTimer" type="Timer" parent="."]
+
+[node name="DestroyComponent" parent="." instance=ExtResource("4_xjjl3")]
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

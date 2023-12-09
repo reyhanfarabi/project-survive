@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://6aw2iknw3gux"]
+[gd_scene load_steps=17 format=3 uid="uid://6aw2iknw3gux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_l1yk1"]
 [ext_resource type="Resource" uid="uid://c2ghf4uta802a" path="res://resources/entity/player.tres" id="2_qj0p0"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://wuepqnu7tptu" path="res://scenes/player/player_look_at_component.tscn" id="6_l8n6l"]
 [ext_resource type="PackedScene" uid="uid://cp4h3qqjkkkjs" path="res://weapons/Sword/sword.tscn" id="7_j5af7"]
 [ext_resource type="PackedScene" uid="uid://dagmveyrwqto1" path="res://scenes/collect_drops_component.tscn" id="8_hylks"]
+[ext_resource type="PackedScene" uid="uid://bmfwuew5beqjc" path="res://scenes/destroy_component.tscn" id="9_fic57"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m5hxm"]
 shader = ExtResource("3_1qxah")
@@ -184,10 +185,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nacx"]
 size = Vector2(16, 28)
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_destroy_comp") groups=["player"]]
 collision_layer = 14
 script = ExtResource("1_l1yk1")
 _resource = ExtResource("2_qj0p0")
+_destroy_comp = NodePath("DestroyComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_m5hxm")
@@ -223,5 +225,7 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectDropsComponent"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_7nacx")
+
+[node name="DestroyComponent" parent="." instance=ExtResource("9_fic57")]
 
 [connection signal="trigger_drop_effect" from="CollectDropsComponent" to="." method="_on_collect_drops_component_trigger_drop_effect"]

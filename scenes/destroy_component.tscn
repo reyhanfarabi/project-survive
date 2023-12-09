@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmfwuew5beqjc"]
+
+[ext_resource type="Script" path="res://scripts/destroy_component.gd" id="1_l76mf"]
+
+[node name="DestroyComponent" type="Node2D"]
+script = ExtResource("1_l76mf")
