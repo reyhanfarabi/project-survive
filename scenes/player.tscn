@@ -229,3 +229,4 @@ shape = SubResource("RectangleShape2D_7nacx")
 [node name="DestroyComponent" parent="." instance=ExtResource("9_fic57")]
 
 [connection signal="trigger_drop_effect" from="CollectDropsComponent" to="." method="_on_collect_drops_component_trigger_drop_effect"]
+[connection signal="trigger_side_effect" from="DestroyComponent" to="." method="_on_destroy_component_trigger_side_effect"]
