@@ -126,3 +126,4 @@ libraries = {
 [node name="DestroyComponent" parent="." instance=ExtResource("4_xjjl3")]
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="trigger_side_effect" from="DestroyComponent" to="." method="_on_destroy_component_trigger_side_effect"]
