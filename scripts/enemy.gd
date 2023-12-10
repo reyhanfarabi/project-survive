@@ -5,7 +5,7 @@ extends Area2D
 @export var _target_distance_padding: int = 1
 @export var _exp_drop_scene: PackedScene
 @export var _destroy_comp: DestroyComponent
-@export var _flicker_effect_comp: FlickerEffectComponent
+@export var _take_damage_comp: TakeDamageComponent
 
 @onready var _player = get_node("../../Player")
 @onready var _drops_container = get_node("../../DropsContainer")
@@ -16,6 +16,7 @@ var _can_attack: bool = true
 
 func set_resource(value: Resource_Enemy):
 	_resource = value
+	_take_damage_comp.set_resource(value)
 
 
 func _ready():
@@ -54,7 +55,7 @@ func _handle_attack_to_player():
 		return
 	_can_attack = false
 	$AttackTimer.start()
-	_player.deal_damage(_resource.attack_damage)
+	_player.take_damage(_resource.attack_damage)
 
 
 func _spawn_exp_drop():
@@ -64,9 +65,8 @@ func _spawn_exp_drop():
 	_drops_container.add_child(e)
 
 
-func deal_damage(damage_amount: int):
-	_flicker_effect_comp.trigger_flicker()
-	_resource.health -= damage_amount
+func take_damage(damage_taken: int) -> void:
+	_take_damage_comp.take_damage(damage_taken)
 
 
 func _on_attack_timer_timeout():

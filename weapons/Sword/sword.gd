@@ -38,10 +38,10 @@ func _handle_attack() -> void:
 	_can_attack = false
 	$AttackDelayTimer.start()
 	
-	# handle deal damage to all enemy inside the hitbox
+	# handle take damage to all enemy inside the hitbox
 	for area in get_overlapping_areas():
 		if area.is_in_group("enemies"):
-			area.deal_damage(_calculate_attack_damage())
+			area.take_damage(_calculate_attack_damage())
 
 
 func _calculate_attack_damage() -> int:

@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cy3yj28aafqjv"]
+[gd_scene load_steps=12 format=3 uid="uid://cy3yj28aafqjv"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_huu1h"]
 [ext_resource type="Shader" path="res://shaders/enemy.gdshader" id="3_6wp2d"]
 [ext_resource type="PackedScene" uid="uid://bulxxaunr0b80" path="res://scenes/drops/drop_exp.tscn" id="3_t0c5r"]
 [ext_resource type="PackedScene" uid="uid://bmfwuew5beqjc" path="res://scenes/destroy_component.tscn" id="4_xjjl3"]
 [ext_resource type="PackedScene" uid="uid://c0o0mkn83s5u6" path="res://scenes/flicker_effect_component.tscn" id="5_ekcpt"]
+[ext_resource type="PackedScene" uid="uid://bkt335kptwuo5" path="res://scenes/take_damage_component.tscn" id="6_swukt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6w4x"]
 resource_local_to_scene = true
@@ -101,13 +102,13 @@ _data = {
 "idle": SubResource("Animation_tqh6n")
 }
 
-[node name="Enemy" type="Area2D" node_paths=PackedStringArray("_destroy_comp", "_flicker_effect_comp") groups=["enemies"]]
+[node name="Enemy" type="Area2D" node_paths=PackedStringArray("_destroy_comp", "_take_damage_comp") groups=["enemies"]]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_huu1h")
 _exp_drop_scene = ExtResource("3_t0c5r")
 _destroy_comp = NodePath("DestroyComponent")
-_flicker_effect_comp = NodePath("FlickerEffectComponent")
+_take_damage_comp = NodePath("TakeDamageComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_r6w4x")
@@ -129,6 +130,9 @@ libraries = {
 
 [node name="FlickerEffectComponent" parent="." node_paths=PackedStringArray("_sprite") instance=ExtResource("5_ekcpt")]
 _sprite = NodePath("../Sprite2D")
+
+[node name="TakeDamageComponent" parent="." node_paths=PackedStringArray("_flicker_effect_comp") instance=ExtResource("6_swukt")]
+_flicker_effect_comp = NodePath("../FlickerEffectComponent")
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="trigger_side_effect" from="DestroyComponent" to="." method="_on_destroy_component_trigger_side_effect"]
