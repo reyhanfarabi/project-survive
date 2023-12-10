@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export var _resource: Resource_Player
 @export var _destroy_comp: DestroyComponent
-@export var _flicker_effect_comp: FlickerEffectComponent
+@export var _take_damage_comp: TakeDamageComponent
 
 @onready var _game_camera_node: Camera2D = get_node("../GameCamera2D")
 
@@ -21,9 +21,8 @@ func _physics_process(_delta):
 	_destroy_comp.handle_destroy(_resource.health)
 
 
-func deal_damage(damage_amount: int):
-	_flicker_effect_comp.trigger_flicker()
-	_resource.health -= damage_amount
+func take_damage(damage_taken: int) -> void:
+	_take_damage_comp.take_damage(damage_taken)
 
 
 func _on_collect_drops_component_trigger_drop_effect(drop) -> void:
