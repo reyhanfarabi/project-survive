@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://gdqvm0mxaj2u"]
+
+[ext_resource type="Script" path="res://scripts/enemy_attack_component.gd" id="1_k2aq2"]
+
+[node name="EnemyAttackComponent" type="Node2D" node_paths=PackedStringArray("_attack_delay_timer_node")]
+script = ExtResource("1_k2aq2")
+_attack_delay_timer_node = NodePath("AttackDelayTimer")
+
+[node name="AttackDelayTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="AttackDelayTimer" to="." method="_on_attack_delay_timer_timeout"]
