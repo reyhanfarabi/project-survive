@@ -2,15 +2,14 @@ extends Area2D
 
 
 @export var _resource: Resource_Enemy: set = set_resource
-@export var _target_distance_padding: int = 1
 @export var _exp_drop_scene: PackedScene
 @export var _destroy_comp: DestroyComponent
 @export var _take_damage_comp: TakeDamageComponent
+@export var _auto_move_comp: AutoMoveComponent
 
 @onready var _player = get_node("../../Player")
 @onready var _drops_container = get_node("../../DropsContainer")
 
-var _direction: Vector2
 var _can_attack: bool = true
 
 
@@ -31,23 +30,9 @@ func _start():
 func _process(delta):
 	if not _player:
 		return
-	_direction = Vector2(_player.position - position).normalized()
-	_handle_movement(delta)
-	_handle_facing()
 	_handle_attack_to_player()
 	_destroy_comp.handle_destroy(_resource.health)
-
-
-func _handle_movement(delta):
-	if (position.distance_to(_player.position) > _target_distance_padding):
-		position += _direction * _resource.move_speed * delta
-
-
-func _handle_facing():
-	if _direction.x > 0:
-		$Sprite2D.flip_h = false
-	elif _direction.x < 0:
-		$Sprite2D.flip_h = true
+	_auto_move_comp.move_towards_position(_player.position, _resource.move_speed, delta)
 
 
 func _handle_attack_to_player():
