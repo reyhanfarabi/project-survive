@@ -1,8 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cy3yj28aafqjv"]
+[gd_scene load_steps=15 format=3 uid="uid://cy3yj28aafqjv"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_huu1h"]
 [ext_resource type="Shader" path="res://shaders/enemy.gdshader" id="3_6wp2d"]
 [ext_resource type="PackedScene" uid="uid://bulxxaunr0b80" path="res://scenes/drops/drop_exp.tscn" id="3_t0c5r"]
+[ext_resource type="PackedScene" uid="uid://bmfwuew5beqjc" path="res://scenes/destroy_component.tscn" id="4_xjjl3"]
+[ext_resource type="PackedScene" uid="uid://c0o0mkn83s5u6" path="res://scenes/flicker_effect_component.tscn" id="5_ekcpt"]
+[ext_resource type="PackedScene" uid="uid://bkt335kptwuo5" path="res://scenes/take_damage_component.tscn" id="6_swukt"]
+[ext_resource type="PackedScene" uid="uid://bsdol4wcqsuga" path="res://scenes/auto_move_component.tscn" id="7_y4cxy"]
+[ext_resource type="PackedScene" uid="uid://gdqvm0mxaj2u" path="res://scenes/enemy_attack_component.tscn" id="8_td8j5"]
+[ext_resource type="PackedScene" uid="uid://dxcr48t6qowac" path="res://scenes/spawn_drop_component.tscn" id="9_hjenw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6w4x"]
 resource_local_to_scene = true
@@ -99,11 +105,15 @@ _data = {
 "idle": SubResource("Animation_tqh6n")
 }
 
-[node name="Enemy" type="Area2D" groups=["enemies"]]
+[node name="Enemy" type="Area2D" node_paths=PackedStringArray("_destroy_comp", "_take_damage_comp", "_auto_move_comp", "_enemy_attack_comp", "_exp_drop_comp") groups=["enemies"]]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_huu1h")
-_exp_drop_scene = ExtResource("3_t0c5r")
+_destroy_comp = NodePath("DestroyComponent")
+_take_damage_comp = NodePath("TakeDamageComponent")
+_auto_move_comp = NodePath("AutoMoveComponent")
+_enemy_attack_comp = NodePath("EnemyAttackComponent")
+_exp_drop_comp = NodePath("EXPSpawnDropComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_r6w4x")
@@ -119,6 +129,23 @@ libraries = {
 "": SubResource("AnimationLibrary_ybamy")
 }
 
-[node name="AttackTimer" type="Timer" parent="."]
+[node name="DestroyComponent" parent="." instance=ExtResource("4_xjjl3")]
 
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[node name="FlickerEffectComponent" parent="." node_paths=PackedStringArray("_sprite") instance=ExtResource("5_ekcpt")]
+_sprite = NodePath("../Sprite2D")
+
+[node name="TakeDamageComponent" parent="." node_paths=PackedStringArray("_flicker_effect_comp") instance=ExtResource("6_swukt")]
+_flicker_effect_comp = NodePath("../FlickerEffectComponent")
+
+[node name="AutoMoveComponent" parent="." node_paths=PackedStringArray("_sprite") instance=ExtResource("7_y4cxy")]
+_target_distance_padding = 1
+_sprite = NodePath("../Sprite2D")
+
+[node name="EnemyAttackComponent" parent="." node_paths=PackedStringArray("_enemy_comp") instance=ExtResource("8_td8j5")]
+_enemy_comp = NodePath("..")
+
+[node name="EXPSpawnDropComponent" parent="." instance=ExtResource("9_hjenw")]
+_drop_scene = ExtResource("3_t0c5r")
+
+[connection signal="trigger_side_effect" from="DestroyComponent" to="." method="_on_destroy_component_trigger_side_effect"]
+[connection signal="trigger_additional_config" from="EXPSpawnDropComponent" to="." method="_on_spawn_drop_component_trigger_additional_config"]
