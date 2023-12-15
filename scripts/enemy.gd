@@ -32,7 +32,8 @@ func _process(delta):
 
 
 func take_damage(damage_taken: int) -> void:
-	_take_damage_comp.take_damage(damage_taken)
+	if _resource.health > 0:
+		_take_damage_comp.take_damage(damage_taken)
 
 
 func _on_destroy_component_trigger_side_effect() -> void:
