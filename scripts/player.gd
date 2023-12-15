@@ -22,7 +22,8 @@ func _physics_process(_delta):
 
 
 func take_damage(damage_taken: int) -> void:
-	_take_damage_comp.take_damage(damage_taken)
+	if _resource.health > 0:
+		_take_damage_comp.take_damage(damage_taken)
 
 
 func _on_collect_drops_component_trigger_drop_effect(drop) -> void:
