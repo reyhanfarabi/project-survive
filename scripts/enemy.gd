@@ -8,7 +8,7 @@ extends Area2D
 @export var _enemy_attack_comp: EnemyAttackComponent
 @export var _exp_drop_comp: SpawnDropComponent
 
-@onready var _player = get_node("../../Player")
+@onready var _player: PlayerComponent = get_node("../../Player")
 @onready var _drops_container = get_node("../../DropsContainer")
 
 
