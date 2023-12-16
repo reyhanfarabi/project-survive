@@ -1,4 +1,5 @@
 extends Area2D
+class_name EnemyComponent
 
 
 @export var _resource: Resource_Enemy: set = set_resource
