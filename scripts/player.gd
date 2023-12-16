@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlayerComponent
 
 
 @export var _resource: Resource_Player
