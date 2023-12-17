@@ -11,7 +11,6 @@ func _ready() -> void:
 
 
 func _set_project_version() -> void:
-	print(_get_project_version())
 	_version_number_label.text = "v" + _get_project_version()
 
 
