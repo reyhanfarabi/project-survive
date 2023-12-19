@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name MainMenuScreenComponent
 
 
 @onready var _start_game_button: Button = $Control/VBoxContainer/MenuButtonContainer/StartGameButton
@@ -6,6 +7,7 @@ extends CanvasLayer
 
 
 func _ready() -> void:
+	get_tree().paused = false
 	_start_game_button.grab_focus()
 	_set_project_version()
 
@@ -17,7 +19,7 @@ func _set_project_version() -> void:
 func _get_project_version() -> String:
 	var export_config = ConfigFile.new()
 	var export_config_path = "res://export_presets.cfg"
-	var config_error = export_config.load(export_config_path)
+	var _config_error = export_config.load(export_config_path)
 	return export_config.get_value("preset.0.options", "application/product_version", "dynamic product version")
 
 
