@@ -5,6 +5,7 @@ class_name PausedMenuScreenComponent
 @onready var _continue_button: Button = $Control/VBoxContainer/MenuButtonContainer/ContinueGameButton
 
 @export var _ui_layer: CanvasLayer
+@export var _player_comp: PlayerComponent
 
 
 func _ready() -> void:
@@ -12,7 +13,7 @@ func _ready() -> void:
 	
 
 func _input(event) -> void:
-	if event.is_action_released("paused"):
+	if is_instance_valid(_player_comp) and event.is_action_released("paused"):
 		visible = !visible
 		_ui_layer.visible = !_ui_layer.visible
 		get_tree().paused = !get_tree().paused

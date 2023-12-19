@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://pl2lrypa48t5"]
+[gd_scene load_steps=2 format=3 uid="uid://pl2lrypa48t5"]
+
+[ext_resource type="Script" path="res://scripts/game_over_screen_component.gd" id="1_phk0g"]
 
 [node name="GameOverScreenComponent" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_phk0g")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -58,3 +62,7 @@ text = "Restart Game"
 layout_mode = 2
 text = "Quit to Menu
 "
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Control/VBoxContainer/MenuButtonContainer/RestartGameButton" to="." method="_on_restart_game_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/MenuButtonContainer/QuitToMenuButton" to="." method="_on_quit_to_menu_button_pressed"]

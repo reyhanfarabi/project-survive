@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bce56et1xspna"]
+[gd_scene load_steps=14 format=3 uid="uid://bce56et1xspna"]
 
 [ext_resource type="Texture2D" uid="uid://b1k56huheu54c" path="res://assets/texture/TX Tileset Grass.png" id="1_3sk7a"]
 [ext_resource type="Texture2D" uid="uid://hcmvhwscuw01" path="res://assets/texture/TX Tileset Wall.png" id="2_3iqga"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dfwwktobs2ab7" path="res://scenes/ui.tscn" id="7_1jlsa"]
 [ext_resource type="PackedScene" uid="uid://bflv2yakif0iw" path="res://scenes/paused_menu_screen_component.tscn" id="8_3qpd7"]
 [ext_resource type="Script" path="res://scripts/enemy_source_spawner.gd" id="8_p0jw0"]
+[ext_resource type="PackedScene" uid="uid://pl2lrypa48t5" path="res://scenes/game_over_screen_component.tscn" id="9_1trj6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_si7rc"]
 texture = ExtResource("1_3sk7a")
@@ -308,8 +309,9 @@ process_mode = 1
 [node name="GameCamera2D" type="Camera2D" parent="."]
 process_mode = 1
 
-[node name="Player" parent="." instance=ExtResource("3_5vid3")]
+[node name="Player" parent="." node_paths=PackedStringArray("_game_over_screen_comp") instance=ExtResource("3_5vid3")]
 process_mode = 1
+_game_over_screen_comp = NodePath("../GameOverScreenComponent")
 
 [node name="EnemySourceSpawner" type="Node2D" parent="."]
 process_mode = 1
@@ -323,5 +325,8 @@ process_mode = 1
 offset_bottom = 36.0
 size_flags_horizontal = 0
 
-[node name="PausedMenuComponent" parent="." node_paths=PackedStringArray("_ui_layer") instance=ExtResource("8_3qpd7")]
+[node name="PausedMenuComponent" parent="." node_paths=PackedStringArray("_ui_layer", "_player_comp") instance=ExtResource("8_3qpd7")]
 _ui_layer = NodePath("../UILayer")
+_player_comp = NodePath("../Player")
+
+[node name="GameOverScreenComponent" parent="." instance=ExtResource("9_1trj6")]
