@@ -40,7 +40,7 @@ func _handle_attack() -> void:
 	
 	# handle take damage to all enemy inside the hitbox
 	for area in get_overlapping_areas():
-		if area.is_in_group("enemies"):
+		if area is EnemyComponent:
 			area.take_damage(_calculate_attack_damage())
 
 

@@ -4,7 +4,7 @@ extends StaticBody2D
 @export var _resource: Resource_Enemy_Spawner
 @export var _enemy_scene: PackedScene
 
-@onready var _player = get_node("../../Player")
+@onready var _player: PlayerComponent = get_node("../../Player")
 @onready var _enemy_container = get_node("../../EnemyContainer")
 
 var _can_spawn: bool = true

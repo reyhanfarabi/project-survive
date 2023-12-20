@@ -7,7 +7,7 @@ class_name EnemyAttackComponent
 @export var _attack_delay_timer_node: Timer
 
 var _resource: Resource_Enemy: set = set_resource
-var _player_comp: CharacterBody2D: set = set_player_comp
+var _player_comp: PlayerComponent: set = set_player_comp
 var _can_attack: bool = true
 
 
@@ -15,8 +15,7 @@ func set_resource(res: Resource_Enemy) -> void:
 	_resource = res
 
 
-func set_player_comp(component: CharacterBody2D) -> void:
-	# need to refactor _player_comp when class name added to player scene
+func set_player_comp(component: PlayerComponent) -> void:
 	_player_comp = component
 
 

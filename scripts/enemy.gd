@@ -1,4 +1,5 @@
 extends Area2D
+class_name EnemyComponent
 
 
 @export var _resource: Resource_Enemy: set = set_resource
@@ -8,7 +9,7 @@ extends Area2D
 @export var _enemy_attack_comp: EnemyAttackComponent
 @export var _exp_drop_comp: SpawnDropComponent
 
-@onready var _player = get_node("../../Player")
+@onready var _player: PlayerComponent = get_node("../../Player")
 @onready var _drops_container = get_node("../../DropsContainer")
 
 
@@ -32,7 +33,8 @@ func _process(delta):
 
 
 func take_damage(damage_taken: int) -> void:
-	_take_damage_comp.take_damage(damage_taken)
+	if _resource.health > 0:
+		_take_damage_comp.take_damage(damage_taken)
 
 
 func _on_destroy_component_trigger_side_effect() -> void:
