@@ -10,8 +10,8 @@ func _ready():
 
 
 func _on_restart_game_button_pressed() -> void:
-	# add restart logic here
-	pass
+	get_tree().reload_current_scene()
+	get_tree().paused = false
 
 
 func _on_quit_to_menu_button_pressed() -> void:

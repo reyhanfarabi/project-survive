@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Resource_Player_Base" load_steps=2 format=3 uid="uid://bcv6mrayvvckk"]
+
+[ext_resource type="Script" path="res://scripts/resources/resource_player_base.gd" id="1_7aa6o"]
+
+[resource]
+script = ExtResource("1_7aa6o")
+attack_cooldown = 1
+level = 1
+level_base_multiplier = 8
+current_level_max_experience = 0
+current_level_experience = 0
+max_health = 100
+health = 100
+attack_damage = 1
+move_speed = 100
