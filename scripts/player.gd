@@ -3,6 +3,7 @@ class_name PlayerComponent
 
 
 @export var _resource: Resource_Player
+@export var _base_resource: Resource_Player_Base
 @export var _destroy_comp: DestroyComponent
 @export var _take_damage_comp: TakeDamageComponent
 @export var _game_over_screen_comp: GameOverScreenComponent
@@ -10,16 +11,9 @@ class_name PlayerComponent
 @onready var _game_camera_node: Camera2D = get_node("../GameCamera2D")
 
 
-func _ready():
-	_start()
-	
-	# temporary code to enable play game again from main menu after died
-	_resource.health = 100
-
-
-func _start():
+func _ready() -> void:
 	$PlayerCamera2D.make_current()
-	_resource.setup_level()
+	_resource.init(_base_resource)
 
 
 func _physics_process(_delta):

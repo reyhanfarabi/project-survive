@@ -26,8 +26,8 @@ func _on_continue_game_button_pressed() -> void:
 
 
 func _on_restart_game_button_pressed() -> void:
-	# TODO: add pause logic
-	pass
+	get_tree().reload_current_scene()
+	get_tree().paused = false
 
 
 func _on_quit_to_menu_button_pressed() -> void:

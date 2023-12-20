@@ -11,9 +11,19 @@ class_name Resource_Player
 @export var current_level_max_experience: int
 @export var current_level_experience: int
 
-# level methods
-func setup_level():
+
+func init(base_resource: Resource_Player_Base):
+	max_health = base_resource.max_health
+	health = base_resource.max_health
+	attack_damage = base_resource.attack_damage
+	move_speed = base_resource.move_speed
+	attack_cooldown = base_resource.attack_cooldown
+	
+	level = base_resource.level
+	level_base_multiplier = base_resource.level_base_multiplier
+	current_level_experience = base_resource.current_level_experience
 	current_level_max_experience = level * level_base_multiplier
+	
 
 func update_level(collected_exp: int):
 	current_level_experience += collected_exp
