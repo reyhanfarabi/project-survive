@@ -15,8 +15,7 @@ func get_look_at() -> Vector2:
 
 
 func _process(_delta) -> void:
-	var input = Input.get_vector("left", "right", "top", "down")
-	_handle_sprite_facing(input)
+	_handle_sprite_facing(_get_mouse_lookat_vector())
 	_set_look_at(_get_mouse_lookat_vector())
 
 
