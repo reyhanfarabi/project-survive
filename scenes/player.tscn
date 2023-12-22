@@ -219,10 +219,10 @@ libraries = {
 _body = NodePath("..")
 _animation_player = NodePath("../AnimationPlayer")
 
+[node name="WeaponSwordComponent" parent="." instance=ExtResource("7_j5af7")]
+
 [node name="PlayerLookAtComponent" parent="." node_paths=PackedStringArray("_sprite") instance=ExtResource("6_l8n6l")]
 _sprite = NodePath("../Sprite2D")
-
-[node name="WeaponSwordComponent" parent="." instance=ExtResource("7_j5af7")]
 
 [node name="CollectDropsComponent" parent="." instance=ExtResource("8_hylks")]
 collision_mask = 8
