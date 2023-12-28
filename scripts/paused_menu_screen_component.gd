@@ -13,7 +13,11 @@ func _ready() -> void:
 	
 
 func _input(event) -> void:
-	if is_instance_valid(_player_comp) and event.is_action_released("paused"):
+	if (
+		is_instance_valid(_player_comp) and 
+		event.is_action_released("paused") and 
+		not $SettingsScreenComponent.visible
+	):
 		visible = !visible
 		_ui_layer.visible = !_ui_layer.visible
 		get_tree().paused = !get_tree().paused
@@ -37,3 +41,13 @@ func _on_quit_to_menu_button_pressed() -> void:
 func _on_visibility_changed() -> void:
 	if visible:
 		_continue_button.grab_focus()
+
+
+func _on_settings_button_pressed() -> void:
+	$Control.hide()
+	$SettingsScreenComponent.show()
+
+
+func _on_settings_screen_component_trigger_back_button() -> void:
+	$Control.show()
+	$SettingsScreenComponent.hide()
