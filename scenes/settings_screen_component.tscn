@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvxl04y8cohdp"]
+[gd_scene load_steps=3 format=3 uid="uid://dvxl04y8cohdp"]
 
 [ext_resource type="Script" path="res://scripts/settings_screen_component.gd" id="1_78arr"]
+[ext_resource type="PackedScene" uid="uid://b8qq67r7uvx0k" path="res://scenes/dispay_settings_bar.tscn" id="2_wcykg"]
 
 [node name="SettingsScreenComponent" type="CanvasLayer"]
 script = ExtResource("1_78arr")
@@ -43,48 +44,13 @@ theme_override_font_sizes/font_size = 32
 text = "Settings
 "
 
-[node name="TabContainer" type="TabContainer" parent="Control/MarginContainer/VBoxContainer"]
+[node name="TabSettingsContainer" type="TabContainer" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.11
 
-[node name="Display" type="TabBar" parent="Control/MarginContainer/VBoxContainer/TabContainer"]
+[node name="Dispay" parent="Control/MarginContainer/VBoxContainer/TabSettingsContainer" instance=ExtResource("2_wcykg")]
 layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/TabContainer/Display"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer"]
-layout_mode = 2
-
-[node name="ModeOptions" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/VBoxContainer/ModeOptions"]
-custom_minimum_size = Vector2(256, 0)
-layout_mode = 2
-text = "Mode
-"
-
-[node name="OptionButton" type="OptionButton" parent="Control/MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/VBoxContainer/ModeOptions"]
-custom_minimum_size = Vector2(256, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-item_count = 2
-selected = 0
-popup/item_0/text = "Fullscreen"
-popup/item_0/id = 0
-popup/item_1/text = "Windowed"
-popup/item_1/id = 1
 
 [node name="BackButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 0)
