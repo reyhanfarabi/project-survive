@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqr4cphhkgyoi"]
+[gd_scene load_steps=3 format=3 uid="uid://bqr4cphhkgyoi"]
 
 [ext_resource type="Script" path="res://scripts/main_menu_screen_component.gd" id="1_agfp6"]
+[ext_resource type="PackedScene" uid="uid://dvxl04y8cohdp" path="res://scenes/settings_screen_component.tscn" id="2_dsrvw"]
 
 [node name="MainMenuScreenComponent" type="CanvasLayer"]
 process_mode = 3
@@ -8,21 +9,19 @@ script = ExtResource("1_agfp6")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 440.5
-offset_top = 164.0
-offset_right = 671.5
-offset_bottom = 444.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -51,6 +50,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Start Game"
 
+[node name="SettingsButton" type="Button" parent="Control/VBoxContainer/MenuButtonContainer"]
+layout_mode = 2
+text = "Settings"
+
 [node name="QuitButton" type="Button" parent="Control/VBoxContainer/MenuButtonContainer"]
 layout_mode = 2
 text = "Quit"
@@ -65,5 +68,10 @@ offset_right = 59.0
 offset_bottom = 608.0
 grow_vertical = 0
 
+[node name="SettingsScreenComponent" parent="." instance=ExtResource("2_dsrvw")]
+visible = false
+
 [connection signal="pressed" from="Control/VBoxContainer/MenuButtonContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/MenuButtonContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/MenuButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="trigger_back_button" from="SettingsScreenComponent" to="." method="_on_settings_screen_component_trigger_back_button"]

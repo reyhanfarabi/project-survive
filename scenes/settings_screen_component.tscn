@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvxl04y8cohdp"]
+
+[ext_resource type="Script" path="res://scripts/settings_screen_component.gd" id="1_78arr"]
+[ext_resource type="PackedScene" uid="uid://b8qq67r7uvx0k" path="res://scenes/dispay_settings_bar.tscn" id="2_wcykg"]
+
+[node name="SettingsScreenComponent" type="CanvasLayer"]
+script = ExtResource("1_78arr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="SettingsLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Settings
+"
+
+[node name="TabSettingsContainer" type="TabContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.11
+
+[node name="Dispay" parent="Control/MarginContainer/VBoxContainer/TabSettingsContainer" instance=ExtResource("2_wcykg")]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Back"
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

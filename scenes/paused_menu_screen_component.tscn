@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bflv2yakif0iw"]
+[gd_scene load_steps=3 format=3 uid="uid://bflv2yakif0iw"]
 
 [ext_resource type="Script" path="res://scripts/paused_menu_screen_component.gd" id="1_ov8rh"]
+[ext_resource type="PackedScene" uid="uid://dvxl04y8cohdp" path="res://scenes/settings_screen_component.tscn" id="2_txme0"]
 
 [node name="PausedMenuScreenComponent" type="CanvasLayer"]
 process_mode = 3
@@ -62,12 +63,21 @@ text = "Continue"
 layout_mode = 2
 text = "Restart Game"
 
+[node name="SettingsButton" type="Button" parent="Control/VBoxContainer/MenuButtonContainer"]
+layout_mode = 2
+text = "Settings"
+
 [node name="QuitToMenuButton" type="Button" parent="Control/VBoxContainer/MenuButtonContainer"]
 layout_mode = 2
 text = "Quit to Menu
 "
 
+[node name="SettingsScreenComponent" parent="." instance=ExtResource("2_txme0")]
+visible = false
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Control/VBoxContainer/MenuButtonContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/MenuButtonContainer/RestartGameButton" to="." method="_on_restart_game_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/MenuButtonContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/MenuButtonContainer/QuitToMenuButton" to="." method="_on_quit_to_menu_button_pressed"]
+[connection signal="trigger_back_button" from="SettingsScreenComponent" to="." method="_on_settings_screen_component_trigger_back_button"]
