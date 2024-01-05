@@ -40,7 +40,10 @@ func _on_quit_to_menu_button_pressed() -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		_continue_button.grab_focus()
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 func _on_settings_button_pressed() -> void:
